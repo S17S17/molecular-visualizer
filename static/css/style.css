@@ -1,0 +1,41 @@
+body {
+    background-color: #f8f9fa;
+}
+
+#molecule-container {
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#molecule-canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+#animation-steps li {
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+#animation-steps li.fw-bold {
+    color: #0d6efd;
+}
+
+.progress {
+    height: 10px;
+}
+
+#current-step-text {
+    font-weight: bold;
+    align-self: center;
+}
