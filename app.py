@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # For session management
+app.secret_key = os.environ.get('SECRET_KEY', os.urandom(24))  # For session management
 
 @app.route('/')
 def index():
@@ -164,7 +164,7 @@ def parse_animation_text(text):
         line = line.strip()
         if line and not line.startswith('#') and not line.startswith('{') and not line.startswith('}'):
             # Remove numbering if present (like "1.", "Step 1:", etc.)
-            cleaned_line = re.sub(r'^(\d+[\.\):]|Step \d+:|\*)\\s*', '', line)
+            cleaned_line = re.sub(r'^(\d+[\.\):]|Step \d+:|\*)\s*', '', line)
             if cleaned_line:
                 animations.append(cleaned_line)
     
@@ -175,4 +175,6 @@ def parse_animation_text(text):
     return animations[:5]  # Return only the first 5 animations
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Get port from environment variable or default to 5000
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
